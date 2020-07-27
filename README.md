@@ -1,0 +1,5 @@
+# MyBaseMvvM
+基于wanAndroidDemo修改的mvvm基础框架
+使用协程替代rxJava
+navigation管理fragment 采用单一activity
+kotlin 100%
