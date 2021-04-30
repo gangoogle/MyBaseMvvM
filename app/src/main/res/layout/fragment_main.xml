@@ -15,13 +15,13 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:paddingStart="@dimen/dp_10"
-            android:paddingEnd="@dimen/dp_10"
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/white"
             android:gravity="center_vertical"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingEnd="@dimen/dp_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -48,6 +48,7 @@
         </RelativeLayout>
 
         <Button
+            android:id="@+id/bt_login_page"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{()->click.onJumpToLoginPage()}"
@@ -55,6 +56,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <Button
+            android:id="@+id/bt_user_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->click.onJumpToUserListPage()}"
+            android:text="跳转到用户列表"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_login_page" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -2,18 +2,13 @@ package com.example.mymvvmproject.ui.activity
 
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.blankj.utilcode.util.ToastUtils
 import com.example.mymvvmproject.R
 import com.example.mymvvmproject.api.base.BaseActivity
 import com.example.mymvvmproject.databinding.ActivityMainBinding
-import com.example.mymvvmproject.viewmodel.request.LoginRequestViewModel
-import com.example.mymvvmproject.viewmodel.state.LoginViewModel
+import com.example.mymvvmproject.viewmodel.life.LocationListener
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hgj.jetpackmvvm.demo.app.ext.showMessage
-import me.hgj.jetpackmvvm.ext.parseState
 
 /**
  * 首页
@@ -25,6 +20,7 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
     override fun layoutId() = R.layout.activity_main
 
     override fun initView(savedInstanceState: Bundle?) {
+        lifecycle.addObserver(LocationListener())
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 val nav = Navigation.findNavController(this@MainActivity, R.id.host_fragment)
@@ -43,8 +39,6 @@ class MainActivity : BaseActivity<BaseViewModel, ActivityMainBinding>() {
             }
         })
     }
-
-
 
 
     override fun createObserver() {

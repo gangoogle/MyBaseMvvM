@@ -67,4 +67,6 @@ object KtxActivityManger {
         for (activity in mActivityList)
             activity.finish()
     }
+
+
 }

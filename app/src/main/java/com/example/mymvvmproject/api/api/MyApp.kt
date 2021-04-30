@@ -5,7 +5,6 @@ import androidx.multidex.MultiDex
 import com.blankj.utilcode.util.LogUtils
 import com.kingja.loadsir.callback.SuccessCallback
 import com.kingja.loadsir.core.LoadSir
-import com.tencent.mmkv.MMKV
 import me.hgj.jetpackmvvm.base.BaseApp
 import me.hgj.jetpackmvvm.demo.app.weight.loadCallBack.EmptyCallback
 import me.hgj.jetpackmvvm.demo.app.weight.loadCallBack.ErrorCallback
@@ -29,7 +28,6 @@ class MyApp : BaseApp {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        MMKV.initialize(this)
         //全局注册
         MultiDex.install(this)
         //注册全局activity生命周期回调
@@ -48,7 +46,7 @@ class MyApp : BaseApp {
             this.isLogSwitch = !isOnLine
             this.globalTag = "yzg"
         }
-
-
     }
+
+
 }

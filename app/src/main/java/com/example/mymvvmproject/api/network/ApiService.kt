@@ -2,6 +2,7 @@ package com.example.mymvvmproject.api.network
 
 import com.example.mymvvmproject.api.data.model.ApiResponse
 import com.example.mymvvmproject.api.data.model.UserInfo
+import com.example.mymvvmproject.api.data.model.WeChatArticle
 import retrofit2.http.*
 
 /**
@@ -27,5 +28,9 @@ interface ApiService {
     ): ApiResponse<UserInfo>
 
 
-
+    /**
+     * 获取公众号列表
+     */
+    @GET("/wxarticle/chapters/json")
+    suspend fun getWxArticleList(): ApiResponse<WeChatArticle>
 }

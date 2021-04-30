@@ -121,9 +121,7 @@ public final class DialogFragmentNavigator extends Navigator<DialogFragmentNavig
         final DialogFragment dialogFragment = (DialogFragment) frag;
         dialogFragment.setArguments(args);
         dialogFragment.getLifecycle().addObserver(mObserver);
-
         dialogFragment.show(mFragmentManager, DIALOG_TAG + mDialogCount++);
-
         return destination;
     }
 

@@ -12,6 +12,11 @@ import com.afollestad.materialdialogs.WhichButton
 import com.afollestad.materialdialogs.actions.getActionButton
 import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.blankj.utilcode.util.ToastUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.hgj.jetpackmvvm.demo.app.util.CacheUtil
 import me.hgj.jetpackmvvm.demo.app.util.SettingUtil
 import me.hgj.jetpackmvvm.ext.navigateAction
@@ -143,10 +148,15 @@ fun Fragment.joinQQGroup(key: String): Boolean {
  * 拦截登录操作，如果没有登录跳转登录，登录过了贼执行你的方法
  */
 fun NavController.jumpByLogin(action: (NavController) -> Unit) {
-    if (CacheUtil.isLogin()) {
-        action(this)
-    } else {
-//        this.navigateAction(R.id.action_to_loginFragment)
+    MainScope().launch {
+        CacheUtil.isLogin().collect { isLogin ->
+            withContext(Dispatchers.Main) {
+                if (isLogin) {
+                    action(this@jumpByLogin)
+                } else {
+                }
+            }
+        }
     }
 }
 
@@ -157,11 +167,18 @@ fun NavController.jumpByLogin(
     actionLogin: (NavController) -> Unit,
     action: (NavController) -> Unit
 ) {
-    if (CacheUtil.isLogin()) {
-        action(this)
-    } else {
-        actionLogin(this)
+    MainScope().launch {
+        CacheUtil.isLogin().collect { isLogin ->
+            withContext(Dispatchers.Main) {
+                if (isLogin) {
+                    action(this@jumpByLogin)
+                } else {
+                    actionLogin(this@jumpByLogin)
+                }
+            }
+        }
     }
+
 }
 
 fun buildArgsBundle(data: Serializable): Bundle {

@@ -43,8 +43,6 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
     }
 
     inner class ProxyClick() : BaseProxyClick() {
-
-
         /**
          * 跳转到登录页
          */
@@ -53,6 +51,13 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>() {
                 R.id.action_mainFragment_to_loginFragment,
                 buildArgsBundle(LoginFgmArgs(2))
             )
+        }
+
+        /**
+         * 跳转到用户列表
+         */
+        fun onJumpToUserListPage() {
+            nav().navigateAction(R.id.action_mainFragment_to_userListFragment)
         }
 
 
